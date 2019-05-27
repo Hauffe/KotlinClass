@@ -1,11 +1,125 @@
 import Constants.Companion.RED
+import java.lang.Exception
+import java.lang.NumberFormatException
 import kotlin.math.*
 
 fun main(args: Array<String>){
 
+
 }
 
 
+
+
+/******Calculator*****************/
+
+fun calculator(){
+    try {
+        val number1:Double = MathLib.getInput("Value1: ")
+        val number2:Double =  MathLib.getInput("Value2: ")
+        print("Operation + - * /   :")
+        val op:String? = readLine()
+
+        val result:Double? = MathLib.operations(number1, number2, op.toString())
+
+        if (result != -1.0){
+            println("Result: ${result}")
+        }else{
+            println("Operation not permitted ")
+        }
+
+    } catch (e:KotlinNullPointerException){
+        println("Value was null")
+    } catch (e: NumberFormatException){
+        println("${e.message} is not a number")
+    }
+}
+
+
+
+fun operations(param1: Double, param2: Double, op: String = "+"):Double{
+    when(op){
+        "+" -> return (param1+param2)
+        "-" -> return (param1-param2)
+        "*" -> return (param1*param2)
+        "/" -> return (param1/param2)
+        else -> throw Exception("Unknown operation")
+    }
+}
+
+
+
+/**********************************/
+
+fun exception (){
+    try {
+        print("val 1:")
+        val value1:String? = readLine()
+        val d1:Double = value1!!.toDouble() //null assertion
+
+        print("val 2:")
+        val value2:String? = readLine()
+        val d2:Double = value2!!.toDouble() //null assertion
+
+        val sum:Double = d1+d2
+        println("Answare: $sum")
+    } catch (e:KotlinNullPointerException){
+        println("Value was null")
+    } catch (e: NumberFormatException){
+        println("${e.message} is not a number")
+    }
+}
+
+fun loop(){
+    val states: Array<String> = arrayOf("CA", "OR", "WA")
+    var counter = 0
+
+    printHeader("While loop")
+    while (counter < states.size){
+        println("Counter = $counter")
+        println("State - ${states[counter]} or ${states.get(counter)}")
+        counter ++
+    }
+
+    printHeader("Do / Wile loop")
+    counter = 0
+    do {
+        println("Counter = $counter")
+        println("State - ${states[counter]} or ${states.get(counter)}")
+        counter ++
+    }while (counter < states.size)
+}
+
+
+
+fun colections(){
+    val colors: Array<String> = arrayOf("Red", "Green", "Blue")
+    val values: IntArray = intArrayOf(1, 3, 5, 7, 9)
+
+    printHeader("For each loop")
+    for (color:String in colors){
+        println(color)
+    }
+    for (value:Int in values){
+        println(value)
+    }
+
+    printHeader("Forloop with indices")
+    for(i in values.indices step 2){
+        println(values[i])
+    }
+    printHeader("Forloop with size")
+    for(i in 0 until colors.size){
+        println(colors[i])
+    }
+
+}
+
+fun printHeader(label: String){
+    println("*****************")
+    println(label)
+    println("*****************")
+}
 
 
 
@@ -36,7 +150,7 @@ fun handelingNullPointerException(){
     println("$l2")
 
     try {
-        val l3:Int = l!!
+        val l3:Int = l!!  // null assertion
         println("$l3")
     }catch (e: KotlinNullPointerException){
         println("l3 is null")
