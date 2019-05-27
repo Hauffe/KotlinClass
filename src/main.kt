@@ -1,6 +1,7 @@
 import Constants.Companion.RED
 import java.lang.Exception
 import java.lang.NumberFormatException
+import Operation.*
 import kotlin.math.*
 
 fun main(args: Array<String>){
@@ -39,17 +40,13 @@ fun calculator(){
 
 fun operations(param1: Double, param2: Double, op: String = "+"):Double{
     when(op){
-        "+" -> return (param1+param2)
-        "-" -> return (param1-param2)
-        "*" -> return (param1*param2)
-        "/" -> return (param1/param2)
+        ADD.operator-> return (param1+param2)
+        SUBTRACT.operator-> return (param1-param2)
+        MULTIPLY.operator-> return (param1*param2)
+        DIVIDE.operator-> return (param1/param2)
         else -> throw Exception("Unknown operation")
     }
 }
-
-
-
-/**********************************/
 
 fun exception (){
     try {
